@@ -1,32 +1,24 @@
 package bstu.fit.germanlabs.myapplication.lab3;
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends Activity {
     private final static String NOTES="notes.txt";
@@ -112,7 +104,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String info = editor.getText().toString();
-                boolean result = info.matches("^[а-яА-Я]+:[a-zA-Z]+");
+                boolean result = info.matches("^[a-zA-Z]+:[a-zA-Z]+");
                 if (result == true) {
                     writeFile(info+";"+"\n");
                     editor.setText(editor.getText().toString().substring(0,editor.getText().toString().indexOf(':')));
@@ -125,7 +117,8 @@ public class MainActivity extends Activity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                readFile();
+                if(readDictionary().equals(""))
+                    alterDialog("Не найдено");
 
             }
         });
@@ -162,23 +155,21 @@ public class MainActivity extends Activity {
             Toast.makeText(this,ex.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
-    private String readFile() {
+    private String readDictionary() {
         try {
             File file = new File(super.getFilesDir()+DICTIONARY);
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
             String line = reader.readLine();
-            Integer index = line.indexOf(editor.getText().toString());
             while (line != null) {
+                Integer index = line.indexOf(editor.getText().toString());
+                if(index!=-1){
+                    p=line.substring(line.indexOf(':'),line.indexOf(";"));
+                    editor.setText(p);
+                    return " ";
+                }
                 line=reader.readLine();
             }
-            if(index!=-1){
-                p=p.substring(p.indexOf(':'),p.indexOf("\n"));
-            }
-            else{
-                alterDialog("Не найдено");
-            }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
