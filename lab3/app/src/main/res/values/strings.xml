@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">lab3</string>
+    <string name="enter_your_text">Enter your text</string>
 </resources>

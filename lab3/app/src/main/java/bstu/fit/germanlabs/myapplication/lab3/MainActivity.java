@@ -36,7 +36,6 @@ public class MainActivity extends Activity {
     public Button btread;
     Button btn;
     String p;
-    List<String> list;
     public Button add,read;
 
     @Override
@@ -112,11 +111,9 @@ public class MainActivity extends Activity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Map<String, String> states = new HashMap<String, String>();
                 String info = editor.getText().toString();
                 boolean result = info.matches("^[а-яА-Я]+:[a-zA-Z]+");
                 if (result == true) {
-                   // states.put(info.substring(0,info.indexOf(':')),info.substring(info.indexOf(':')));
                     writeFile(info+";"+"\n");
                     editor.setText(editor.getText().toString().substring(0,editor.getText().toString().indexOf(':')));
                 }
@@ -145,11 +142,11 @@ public class MainActivity extends Activity {
         a.show();
     }
     public void init(){
-        btsave=(Button)findViewById(R.id.bsave);
-        editor=(EditText)findViewById(R.id.editor);
+        btsave= findViewById(R.id.bsave);
+        editor= findViewById(R.id.editor);
         editor.setBackgroundColor(240);
-        btn=(Button)findViewById(R.id.close);
-        btread=(Button)findViewById(R.id.bread);
+        btn= findViewById(R.id.close);
+        btread= findViewById(R.id.bread);
         add=findViewById(R.id.button2);
         read=findViewById(R.id.button3);
     }
@@ -187,26 +184,6 @@ public class MainActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    /*
-      File  file =new File(super.getFilesDir()+DICTIONARY);
-        try{
-            FileReader fileReader = new FileReader(file);
-            FileInputStream fw=new FileInputStream(file);
-            char[] nw=new char[fw.available()];
-            fileReader.read(nw);
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < nw.length; ++i) {
-                builder.append(nw[i]);
-            }
-            p=builder.toString();
-            alterDialog(p);
-            fileReader.close();
-        }
-        catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return "";
-    }*/
         return "";
     }
 

@@ -47,6 +47,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:gravity="top"
+        android:hint="@string/enter_your_text"
         android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
