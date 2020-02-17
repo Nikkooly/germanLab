@@ -43,7 +43,7 @@ public void init(){
     public void login(View view) {
         s=password.getText().toString().trim();
         l=login.getText().toString().trim();
-        if(login.getText().toString().length()==0 || s.length()==0){
+        if(l.length()==0 || s.length()==0){
             Toast.makeText(getApplicationContext(),"Empty field. Please check!",
                     Toast.LENGTH_SHORT).show();
         }
