@@ -20,86 +20,89 @@ import java.util.Iterator;
 
 public class MainActivity extends Activity {
 
-     EditText username=null;
-     EditText  password=null;
-     String user="admin",pass="admin",s;
+    EditText username;
+    EditText password;
+    String user = "admin";
+    char[] pass = "admin".toCharArray();
     ArrayList<Integer> check;
-     int count=0;
-     String p,k,l;
+    int count = 0;
+    int maxCountAttempts = 5;
+    int countAttempts = 3;
+    String p, k, l, s;
     private Button login;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState)
-    { super.onCreate (savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-init();
+        init();
     }
-public void init(){
-    username = findViewById (R.id.editText1);
-    password=(EditText) findViewById (R.id.editText2);
-    login = (Button) findViewById (R.id.button1);
-    check=new ArrayList<Integer>();
-}
-    public void login(View view) {
-        s=password.getText().toString().trim();
-        l=login.getText().toString().trim();
-        if(l.length()==0 || s.length()==0){
-            Toast.makeText(getApplicationContext(),"Empty field. Please check!",
+
+    public void init() {
+        username = findViewById(R.id.editText1);
+        password = findViewById(R.id.editText2);
+        login = findViewById(R.id.button1);
+        check = new ArrayList<Integer>();
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkLoginScreen();
+            }
+        });
+    }
+
+    public void checkLoginScreen() {
+        s = password.getText().toString().trim();
+        l = username.getText().toString().trim();
+        if (l.length() == 0  || s.length() == 0) {
+            Toast.makeText(getApplicationContext(), "Empty field. Please check!",
                     Toast.LENGTH_SHORT).show();
         }
-            if (s.length() < pass.length()-1 || s.length() > pass.length()+1) {
-                errorCheck(2);
-            } else if (s.length() == pass.length()-1) {
-                s = s + " ";
-                checkSymbols();
-                Integer sum = check.get(0) + 1;
-                errorCheck(sum);
-            } else if (s.length() == pass.length()+1) {
-                s = s.substring(0, s.length() - 1);
-                checkSymbols();
-                Integer sum = check.get(0) + 0;
-                errorCheck(sum);
-            } else if (s.equals(pass)) {
-                Toast.makeText(getApplicationContext(), "You are welcome!",
-                        Toast.LENGTH_SHORT).show();
-                count = 0;
-            } else {
-                checkSymbols();
-                Integer sum = check.get(0) + check.get(1);
-                errorCheck(sum);
+        else if(!l.equals(user)) {
+            Toast.makeText(getApplicationContext(), "Empty user blya. Please check!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else{
+            if(s.length() == pass.length)
+                checkSymbols(s.toCharArray());
+            else{
+                if(Math.abs(pass.length - s.length()) == 1)
+                    countAttempts = maxCountAttempts;
+                count++;
+                errorCheck();
             }
-            check.clear();
-    }
-public void checkSymbols() {
-    for (int i = 0; i < pass.length(); i++) {
-        k = pass.substring(i, i + 1);
-        p = s.substring(i, i + 1);
-        if (p.equals(k)) {
-            check.add(1);
-        } else {
-            check.add(0);
         }
-
     }
-    Collections.sort(check);
-}
-public void errorCheck(Integer sum){
-    if(sum!=1){
-        count++;
-        if(count==3) {
+
+    public void checkSymbols(char[] password) {
+        int countLocalError = 0;
+        for (int i = 0; i < pass.length; i++) {
+            if(password[i] != pass[i]){
+                countLocalError++;
+            }
+        }
+        if(countLocalError == 0){
+            Toast.makeText(getApplicationContext(), "You are welcome!",
+                    Toast.LENGTH_SHORT).show();
+            count = 0;
+        }
+        else if(countLocalError == 1){
+            countAttempts = maxCountAttempts;
+            count++;
+        }
+        else{
+            count++;
+        }
+        errorCheck();
+    }
+
+    public void errorCheck() {
+        if (countAttempts == count)
             this.finish();
+        if(count != 0){
+            Toast.makeText(getApplicationContext(), "Rong Credentials",
+                    Toast.LENGTH_SHORT).show();
+            Log.d("Dsdds", check.toString());
         }
     }
-    else if(sum==1){
-        count++;
-        if(count==5){
-            this.finish();
-        }
-    }
-    Toast.makeText(getApplicationContext(),"Rong Credentials",
-            Toast.LENGTH_SHORT).show();
-    Log.d("Dsdds",check.toString());
 }
-
-}
-
