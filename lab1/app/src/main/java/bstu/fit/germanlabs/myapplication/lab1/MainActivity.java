@@ -24,12 +24,10 @@ public class MainActivity extends Activity {
     EditText password;
     String user = "admin";
     char[] pass = "admin".toCharArray();
-    ArrayList<Integer> check;
     int count = 0;
     int maxCountAttempts = 5;
     int countAttempts = 3;
-    String p, k, l, s;
-    private Button login;
+    String l, s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,7 @@ public class MainActivity extends Activity {
     public void init() {
         username = findViewById(R.id.editText1);
         password = findViewById(R.id.editText2);
-        login = findViewById(R.id.button1);
-        check = new ArrayList<Integer>();
+        Button login = findViewById(R.id.button1);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +99,6 @@ public class MainActivity extends Activity {
         if(count != 0){
             Toast.makeText(getApplicationContext(), "Rong Credentials",
                     Toast.LENGTH_SHORT).show();
-            Log.d("Dsdds", check.toString());
         }
     }
 }
