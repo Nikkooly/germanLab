@@ -48,12 +48,6 @@ public class MainActivity extends Activity {
                         info.add(time);
                         setList(info);
                         break;
-                   /* case "cat prooc/cpuinfo":
-                        Integer indexModel=outp.indexOf("model");
-                        outp=outp.substring(indexModel,indexModel+37);
-                        info.add(outp);
-                        setList(info);
-                        break;*/
                     default:
                    info.add(outp);
                     setList(info);
@@ -67,8 +61,8 @@ public class MainActivity extends Activity {
         list.setAdapter(adapter);
     }
     public void init(){
-        input = (EditText)findViewById(R.id.txt);
-        btn = (Button)findViewById(R.id.btn);
+        input = findViewById(R.id.txt);
+        btn = findViewById(R.id.btn);
         list=findViewById(R.id.out);
         File file= new File(getFilesDir(),"test.txt");
         if(!file.exists()){
