@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String info = editor.getText().toString();
-                boolean result = info.matches("^[a-zA-Z]+:[a-zA-Z]+");
+                boolean result = info.matches("^[а-яА-Я]+:[a-zA-Z]+");
                 if (result == true) {
                     writeFile(info+";"+"\n");
                     editor.setText(editor.getText().toString().substring(0,editor.getText().toString().indexOf(':')));
@@ -164,7 +164,7 @@ public class MainActivity extends Activity {
             while (line != null) {
                 Integer index = line.indexOf(editor.getText().toString());
                 if(index!=-1){
-                    p=line.substring(line.indexOf(':'),line.indexOf(";"));
+                    p=line.substring(line.indexOf(':')+1,line.indexOf(";"));
                     editor.setText(p);
                     return " ";
                 }
