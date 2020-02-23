@@ -26,19 +26,22 @@ public class MainActivity extends ListActivity {
         setContentView(R.layout.activity_main);
 
         /////
-        FileOutputStream fOut = null;
+        //FileOutputStream fOut = null;
         //Since you are creating a subdirectory, you need to make sure it's there first
         File directory = new File(Environment.getExternalStorageDirectory(), "AutoWriter");
         if (!directory.exists()) {
             directory.mkdirs();
         }
 
-        try {
+
             //Create the stream pointing at the file location
+        FileOutputStream fOut = null;
+        try {
             fOut = new FileOutputStream(new File(directory, "samplefile.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
 
         String nochartOutput = "See my collection!";
 
@@ -53,12 +56,8 @@ public class MainActivity extends ListActivity {
             e.printStackTrace();
         }
 
-
-        ////
         myPath = (TextView)findViewById(R.id.path);
-
         root = Environment.getExternalStorageDirectory().getPath();
-
         getDir(root);
     }
 
@@ -93,7 +92,8 @@ public class MainActivity extends ListActivity {
         }
 
         ArrayAdapter<String> fileList =
-                new ArrayAdapter<String>(this, R.layout.activity_main, item);
+                new ArrayAdapter<String>(this,
+                        R.layout.row, item);
         setListAdapter(fileList);
     }
 
