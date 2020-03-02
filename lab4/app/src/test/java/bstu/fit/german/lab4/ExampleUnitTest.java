@@ -1,4 +1,4 @@
-package bstu.fit.germanlabs.myapplication.lab4;
+package bstu.fit.german.lab4;
 
 import org.junit.Test;
 

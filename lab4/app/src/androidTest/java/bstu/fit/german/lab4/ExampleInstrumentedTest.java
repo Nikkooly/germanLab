@@ -1,4 +1,4 @@
-package bstu.fit.germanlabs.myapplication.lab4;
+package bstu.fit.german.lab4;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("bstu.fit.germanlabs.myapplication.lab4", appContext.getPackageName());
+        assertEquals("bstu.fit.german.lab4", appContext.getPackageName());
     }
 }
