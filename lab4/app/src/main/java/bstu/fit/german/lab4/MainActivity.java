@@ -56,12 +56,21 @@ public class MainActivity extends ListActivity {
             directory.mkdirs();
         }
 
+        File file = new File(directory, "samplefile.txt");
+        if(!file.exists()){
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_launcher_background)
+                    .setTitle("[" + file.getName() + "] file doesn't exists!")
+                    .setPositiveButton("OK", null).show();
+        }
         try {
             fOut = new FileOutputStream(new File(directory, "samplefile.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         String nochartOutput = td.encrypt(text);
+        if(fOut == null)
+            return;
         OutputStreamWriter osw = new OutputStreamWriter(fOut);
         try {
             osw.write(nochartOutput);
@@ -71,7 +80,7 @@ public class MainActivity extends ListActivity {
         catch (IOException e) {
             e.printStackTrace();
         }
-        myPath = (TextView)findViewById(R.id.path);
+        myPath = findViewById(R.id.path);
         root = Environment.getExternalStorageDirectory().getPath();
         getDir(root);
     }
@@ -79,8 +88,8 @@ public class MainActivity extends ListActivity {
     private void getDir(String dirPath)
     {
         myPath.setText("Location: " + dirPath);
-        item = new ArrayList<String>();
-        path = new ArrayList<String>();
+        item = new ArrayList<>();
+        path = new ArrayList<>();
         File f = new File(dirPath);
         File[] files = f.listFiles();
 
@@ -92,22 +101,19 @@ public class MainActivity extends ListActivity {
             path.add(f.getParent());
         }
 
-        for(int i=0; i < files.length; i++)
-        {
-            File file = files[i];
-
-            if(!file.isHidden() && file.canRead()){
+        for (File file : files) {
+            if (!file.isHidden() && file.canRead()) {
                 path.add(file.getPath());
-                if(file.isDirectory()){
+                if (file.isDirectory()) {
                     item.add(file.getName() + "/");
-                }else{
+                } else {
                     item.add(file.getName());
                 }
             }
         }
 
         ArrayAdapter<String> fileList =
-                new ArrayAdapter<String>(this, R.layout.row, item);
+                new ArrayAdapter<>(this, R.layout.row, item);
         setListAdapter(fileList);
     }
 
@@ -162,8 +168,8 @@ public class MainActivity extends ListActivity {
             char[] nw=new char[fw.available()];
             fileReader.read(nw);
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < nw.length; ++i) {
-                builder.append(nw[i]);
+            for (char c : nw) {
+                builder.append(c);
             }
             decrypted=builder.toString();
             fileReader.close();
