@@ -58,19 +58,23 @@ public class MainActivity extends ListActivity {
 
         File file = new File(directory, "samplefile.txt");
         if(!file.exists()){
-            new AlertDialog.Builder(this)
-                    .setIcon(R.drawable.ic_launcher_background)
-                    .setTitle("[" + file.getName() + "] file doesn't exists!")
-                    .setPositiveButton("OK", null).show();
+            try {
+                if(!file.createNewFile()){
+                    new AlertDialog.Builder(this)
+                            .setIcon(R.drawable.ic_launcher_background)
+                            .setTitle("[" + file.getName() + "] file doesn't exists!")
+                            .setPositiveButton("OK", null).show();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         try {
-            fOut = new FileOutputStream(new File(directory, "samplefile.txt"));
+            fOut = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         String nochartOutput = td.encrypt(text);
-        if(fOut == null)
-            return;
         OutputStreamWriter osw = new OutputStreamWriter(fOut);
         try {
             osw.write(nochartOutput);
@@ -142,21 +146,18 @@ public class MainActivity extends ListActivity {
         }
     }
     public  boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("vdfvfvfd","Permission is granted");
-                return true;
-            } else {
-
-                Log.v("vfvfdvf","Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            Log.v("vfvdvf","Permission is granted");
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED) {
+            Log.v("vdfvfvfd","Permission is granted");
             return true;
+        } else {
+
+            Log.v("vfvfdvf","Permission is revoked");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            return false;
         }
     }
     private String readFile()
