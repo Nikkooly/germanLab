@@ -26,11 +26,13 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.list_view);
 
         List<String> links = new ArrayList<>();
-        links.add("http://yandex.ru");
-        links.add("http://google.ru");
+        links.add("http://onliner.by");
+        links.add("http://google.com");
         links.add("http://vk.com");
-        links.add("http://mail.ru");
-        links.add("http://lenta.ru");
+        links.add("http://gmail.com");
+        links.add("http://tut.by");
+        links.add("http://yandex.by");
+        links.add("http://facebook.com");
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, links);
         mListView.setAdapter(arrayAdapter);

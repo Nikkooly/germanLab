@@ -12,22 +12,13 @@ public class MyWebBrowser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        WebView webview = new WebView(this);
-        setContentView(webview);
-
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.setWebViewClient(new WebViewClient() {
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-
-            }
-        });
-
+        setContentView(R.layout.web);
+        WebView webView = (WebView) findViewById(R.id.wv);
         Intent intent = getIntent();
         if (intent != null) {
             String link = intent.getStringExtra("LINK");
             if (link != null) {
-                webview.loadUrl(link);
+                webView.loadUrl(link);
             } else {
                 Toast.makeText(this, "Sorry, link not found", Toast.LENGTH_SHORT).show();
             }
