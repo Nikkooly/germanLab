@@ -50,12 +50,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                // Inserting known Languages
-                //Log.d("Insert: ", "Inserting ..");
                 db.add(new Values(editorE.getText().toString()));
                 Toast.makeText(getApplicationContext(), "Succesfully write", Toast.LENGTH_SHORT).show();
-                // editorE.setText("DataBase Successfully Updated");
             }
         });
 

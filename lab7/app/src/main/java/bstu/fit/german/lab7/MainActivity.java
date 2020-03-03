@@ -26,12 +26,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-        listView = (ListView) findViewById(R.id.list);
-
-        // Defined Array values to show in ListView
         String[] valuesq = new String[] {"Belgium",
                 "Canada",
                 "Denmark",
@@ -41,14 +35,6 @@ public class MainActivity extends Activity {
                 "Korea South",
                 "Netherlands"
         };
-
-
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, valuesq);
 
@@ -56,23 +42,16 @@ public class MainActivity extends Activity {
                 .loadLayoutAnimation(this, R.anim.list_layout_controller);
         listView.setLayoutAnimation(controller);
 
-        // Assign adapter to ListView
         listView.setAdapter(adapter);
-
-        // ListView Item Click Listener
-        //listView.setOnItemClickListener(new OnItemClickListener() {
 
         listView.setOnItemClickListener(new OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                // TODO Auto-generated method stub
-                // ListView Clicked item index
-                int itemPosition     = arg2; //position;
+                int itemPosition     = arg2;
 
-                // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(arg2/*position*/);
+                String  itemValue    = (String) listView.getItemAtPosition(arg2);
 
                 switch(itemPosition)
                 {

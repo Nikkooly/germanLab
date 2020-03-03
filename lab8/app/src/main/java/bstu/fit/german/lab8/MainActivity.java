@@ -26,39 +26,32 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_READ_CONTACTS=1;
     private static boolean READ_CONTACTS_GRANTED =false;
     private static String NAME_CONTACT;
-EditText editText;
+    EditText editText;
     ListView contactList;
     ArrayList<String> contacts = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-editText=findViewById(R.id.editText);
+        editText=findViewById(R.id.editText);
         contactList = (ListView) findViewById(R.id.contactList);
 
-        // получаем разрешения
         int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
-        // если устройство до API 23, устанавливаем разрешение
         if(hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
             READ_CONTACTS_GRANTED = true;
         }
         else{
-            // вызываем диалоговое окно для установки разрешений
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
-        }
-        // если разрешение установлено, загружаем контакты
-        if (READ_CONTACTS_GRANTED){
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
 
-        switch (requestCode){
-            case REQUEST_CODE_READ_CONTACTS:
-                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    READ_CONTACTS_GRANTED = true;
-                }
+        if (requestCode == REQUEST_CODE_READ_CONTACTS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                READ_CONTACTS_GRANTED = true;
+            }
         }
         if(READ_CONTACTS_GRANTED){
 
@@ -67,9 +60,10 @@ editText=findViewById(R.id.editText);
             Toast.makeText(this, "Требуется установить разрешения", Toast.LENGTH_LONG).show();
         }
     }
-public void Load(View view){
+    public void Load(View view){
         loadContacts();
 }
+
     private void loadContacts(){
         NAME_CONTACT=editText.getText().toString();
         ContentResolver contentResolver = getContentResolver();
@@ -98,8 +92,5 @@ public void Load(View view){
         else{
             Toast.makeText(this, "Совпадений не найдено", Toast.LENGTH_LONG).show();
         }
-
-        // создаем адаптер
-
     }
 }
