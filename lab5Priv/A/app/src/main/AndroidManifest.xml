@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bstu.fit.german.yarmolik.a">
-    <permission
+    <!-- TASK 2   A NPA to B PA -->
+   <!-- <uses-permission android:name="ben.permission.STARTBENACTIVITY" />-->
+<!-- Task 4 -->
+   <permission
         android:protectionLevel="normal"
         android:label="Start My Activity"
         android:name="ben.permission.STARTBENACTIVITY"
         android:description="@string/app_name"
         />
+    <!--
+    <permission
+        android:protectionLevel="normal"
+        android:label="Start My Activity"
+        android:name="ben.permission.STARTBENACTIVITYTWO"
+        android:description="@string/app_name"
+        />-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,17 +24,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+      <!--  <activity android:name="com.bstu.fit.german.yarmolik.a.PrivilegedAActivityTwo"
+            android:permission="ben.permission.STARTBENACTIVITYTWO" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>>
+        </activity>-->
+
+        <!-- TASK 2 , TASK 4 -->
+        <activity android:name="com.bstu.fit.german.yarmolik.a.PrivilegedAActivity"
+            android:permission="ben.permission.STARTBENACTIVITY" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <!-- END -->
+        <activity android:name=".PrivilegedAActivityTwo"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.bstu.fit.german.yarmolik.a.PrivilegedAActivity"
-            android:permission="ben.permission.STARTBENACTIVITY" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
     </application>
