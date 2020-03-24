@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 
         LayoutAnimationController controller = AnimationUtils
                 .loadLayoutAnimation(this, R.anim.list_layout_controller);
+        listView=findViewById(R.id.list);
         listView.setLayoutAnimation(controller);
 
         listView.setAdapter(adapter);
@@ -51,7 +52,7 @@ public class MainActivity extends Activity {
                                     long arg3) {
                 int itemPosition     = arg2;
 
-                String  itemValue    = (String) listView.getItemAtPosition(arg2);
+                String  itemValue = (String) listView.getItemAtPosition(arg2);
 
                 switch(itemPosition)
                 {
