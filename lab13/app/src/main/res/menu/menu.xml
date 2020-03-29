@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottombaritem_popular"
+        android:icon="@drawable/ic_star"
+        android:title="Фрагмент 1"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottombaritem_films"
+        android:icon="@drawable/ic_films"
+        android:title="Фрагмент 2"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/bottombaritem_ticket"
+        android:icon="@drawable/ic_films"
+        android:title="Фрагмент 3"
+        app:showAsAction="ifRoom"/>
+
+</menu>

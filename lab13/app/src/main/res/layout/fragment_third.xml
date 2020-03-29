@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThirdFragment"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.bstu.fit.yarmolik.FourthFragment"
+        android:layout_width="match_parent"
+        android:layout_height="328dp" />
+
+    <fragment
+        android:id="@+id/listFragment2"
+        android:name="com.bstu.fit.yarmolik.FourthFragment"
+        android:layout_width="match_parent"
+        android:layout_height="337dp" />
+
+</LinearLayout>

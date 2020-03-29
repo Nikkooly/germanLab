@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="57dp">
+
+    <Button
+        android:id="@+id/bounceBallButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_centerHorizontal="true"
+        android:text="Bounce Ball" />
+
+    <ImageView
+        android:id="@+id/bounceBallImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/bounceBallButton"
+        android:background="@drawable/ball_shape" />
+
+
+        <TextClock
+            android:id="@+id/textClock1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="350dp"
+            android:format12Hour="hh:mm:ss a"
+            android:textColor="#F1511B"
+            android:layout_marginLeft="70dp"
+            android:textSize="45dp"
+            android:text="TextClock" />
+
+
+</LinearLayout>
