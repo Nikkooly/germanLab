@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "871801841492",
+    "firebase_url": "https://lab19-5af62.firebaseio.com",
+    "project_id": "lab19-5af62",
+    "storage_bucket": "lab19-5af62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871801841492:android:522fe61225bfd14b160ac1",
+        "android_client_info": {
+          "package_name": "com.bstu.fit.lab19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871801841492-u203ontuad8k35afk6fa72kcuv3dilmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo4H4pec7_Yi2PTWBnQ758RLkpDcbuTGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "871801841492-u203ontuad8k35afk6fa72kcuv3dilmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
